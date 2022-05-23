@@ -13,22 +13,9 @@ import numpy as np
 st.header("SoftwareTesting")
 option = st.selectbox(
     'How would you like ?',
-     ('aa', 'triangle_test','calender_test','computer_salesperson_test','tel_charges_test')
+     ('triangle_test','calender_test','computer_salesperson_test','tel_charges_test')
 )
-if option == 'aa':
-    st.subheader('aa')
-    uploaded_file = st.file_uploader("Choose a file",key = 'aa')
-    if uploaded_file is not None:
-        dataframe = pd.read_csv(uploaded_file)
-        dataframe_resulted = dataframe.copy()
-        for index in dataframe.index:
-            dataframe_resulted.at[index,'test']=test.test_a(
-            dataframe.at[index,'a'],dataframe.at[index,'b'],dataframe.at[index,'c'])
-        st.write(dataframe)
-        st.write(dataframe_resulted)
-        dataframe_resulted.to_csv('bigger_2.csv')
-
-elif option == 'triangle_test':
+if option == 'triangle_test':
     st.subheader('triangle_test')
     uploaded_file = st.file_uploader("Choose a file", key='triangle_test')
     if uploaded_file is not None:
