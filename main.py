@@ -11,18 +11,6 @@ import datetime
 import numpy as np
 
 st.header("SoftwareTesting")
-# with st.form("my_form"):
-#     st.write("Inside the form")
-#     title_1 = st.number_input('Movie title1')
-#     title_2 = st.number_input('Movie title2')
-#     title_3 = st.number_input('Movie title3')
-#     # Every form must have a submit button.
-#     submitted = st.form_submit_button("Submit")
-#     if submitted:
-#         st.write(title_1 + title_2 + title_3)
-#
-# st.write("Outside the form")
-
 option = st.selectbox(
     'How would you like ?',
      ('aa', 'triangle_test','calender_test','computer_salesperson_test','tel_charges_test')
