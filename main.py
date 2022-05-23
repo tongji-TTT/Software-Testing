@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import test
-import test_2
 import triangle_test
 import calender_test
 import computer_salesperson_test
@@ -10,12 +9,24 @@ import tel_charges_test
 import get_percent
 import datetime
 import numpy as np
+
 st.header("SoftwareTesting")
+# with st.form("my_form"):
+#     st.write("Inside the form")
+#     title_1 = st.number_input('Movie title1')
+#     title_2 = st.number_input('Movie title2')
+#     title_3 = st.number_input('Movie title3')
+#     # Every form must have a submit button.
+#     submitted = st.form_submit_button("Submit")
+#     if submitted:
+#         st.write(title_1 + title_2 + title_3)
+#
+# st.write("Outside the form")
+
 option = st.selectbox(
     'How would you like ?',
      ('aa', 'triangle_test','calender_test','computer_salesperson_test','tel_charges_test')
 )
-
 if option == 'aa':
     st.subheader('aa')
     uploaded_file = st.file_uploader("Choose a file",key = 'aa')
@@ -55,6 +66,13 @@ elif option == 'triangle_test':
         fig = plt.figure()
         plt.pie(sizes, labels=['passed','failed'],explode=(0,0.2), autopct='%.2f%%', colors=["#d5695d", "#5d8ca8"])
         st.pyplot(fig)
+    with st.form("triangle_form"):
+        title_1 = st.number_input('side A')
+        title_2 = st.number_input('side B')
+        title_3 = st.number_input('side C')
+        submitted = st.form_submit_button("Submit")
+        if submitted:
+            st.write(triangle_test.triangle_atom(title_1,title_2,title_3))
 
 elif option == 'calender_test':
     st.subheader('calender_test')
@@ -81,6 +99,13 @@ elif option == 'calender_test':
         fig = plt.figure()
         plt.pie(sizes, labels=['passed', 'failed'], explode=(0, 0.2), autopct='%.2f%%', colors=["#d5695d", "#5d8ca8"])
         st.pyplot(fig)
+    with st.form("calender_form"):
+        title_1 = st.number_input('year',format='%g')
+        title_2 = st.number_input('month',format='%g')
+        title_3 = st.number_input('day',format='%g')
+        submitted = st.form_submit_button("Submit")
+        if submitted:
+            st.write(calender_test.get_calender(int(title_1),int(title_2),int(title_3)))
 
 elif option == 'computer_salesperson_test':
     st.subheader('computer_salesperson_test')
@@ -107,6 +132,13 @@ elif option == 'computer_salesperson_test':
         fig = plt.figure()
         plt.pie(sizes, labels=['passed', 'failed'], explode=(0, 0.2), autopct='%.2f%%', colors=["#d5695d", "#5d8ca8"])
         st.pyplot(fig)
+    with st.form("computer_salesperson_form"):
+        title_1 = st.number_input('host number')
+        title_2 = st.number_input('screen number')
+        title_3 = st.number_input('experiment number')
+        submitted = st.form_submit_button("Submit")
+        if submitted:
+            st.write(computer_salesperson_test.get_total(title_1,title_2,title_3))
 
 elif option == 'tel_charges_test':
     st.subheader('tel_charges_test')
@@ -133,3 +165,9 @@ elif option == 'tel_charges_test':
         fig = plt.figure()
         plt.pie(sizes, labels=['passed', 'failed'], explode=(0, 0.2), autopct='%.2f%%', colors=["#d5695d", "#5d8ca8"])
         st.pyplot(fig)
+    with st.form("tel_charges_form"):
+        title_1 = st.number_input('minutes')
+        title_2 = st.number_input('times')
+        submitted = st.form_submit_button("Submit")
+        if submitted:
+            st.write(tel_charges_test.get_total(title_1, title_2))
