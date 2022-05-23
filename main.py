@@ -6,13 +6,14 @@ import test_2
 import triangle_test
 import calender_test
 import computer_salesperson_test
+import tel_charges_test
 import get_percent
 import datetime
 import numpy as np
 st.header("SoftwareTesting")
 option = st.selectbox(
     'How would you like ?',
-     ('aa', 'bb', 'triangle_test','calender_test','computer_salesperson_test')
+     ('aa', 'triangle_test','calender_test','computer_salesperson_test','tel_charges_test')
 )
 
 if option == 'aa':
@@ -27,21 +28,6 @@ if option == 'aa':
         st.write(dataframe)
         st.write(dataframe_resulted)
         dataframe_resulted.to_csv('bigger_2.csv')
-
-elif option == 'bb':
-    st.subheader('bb')
-    uploaded_file = st.file_uploader("Choose a file",key ='bb')
-    if uploaded_file is not None:
-
-        dataframe = pd.read_csv(uploaded_file)
-        dataframe_resulted = dataframe.copy()
-        for index in dataframe.index:
-            dataframe_resulted.at[index, 'test'] = test_2.test_b(
-                dataframe.at[index, 'a'], dataframe.at[index, 'b'], dataframe.at[index, 'c'])
-
-        st.write(dataframe)
-        st.write(dataframe_resulted)
-        dataframe_resulted.to_csv('smaller_2.csv')
 
 elif option == 'triangle_test':
     st.subheader('triangle_test')
@@ -112,10 +98,35 @@ elif option == 'computer_salesperson_test':
             dataframe_resulted.at[index, 'testTime'] = datetime.datetime.now()
             dataframe_resulted.at[index, 'tester'] = 'drt'
         dataframe_resulted_false = dataframe_resulted[dataframe_resulted['isSame'] == False]
-        st.write(dataframe)
         st.subheader('Result')
         st.write(dataframe_resulted)
         dataframe_resulted.to_csv('test/4_debug.csv', index=False)
+        st.subheader('Bug_result')
+        st.write(dataframe_resulted_false)
+        sizes = [get_percent.get_per(dataframe_resulted), 1 - get_percent.get_per(dataframe_resulted)]
+        fig = plt.figure()
+        plt.pie(sizes, labels=['passed', 'failed'], explode=(0, 0.2), autopct='%.2f%%', colors=["#d5695d", "#5d8ca8"])
+        st.pyplot(fig)
+
+elif option == 'tel_charges_test':
+    st.subheader('tel_charges_test')
+    uploaded_file = st.file_uploader("Choose a file", key='tel_charges_test')
+    if uploaded_file is not None:
+        dataframe = pd.read_csv(uploaded_file)
+        dataframe_resulted = dataframe.copy()
+        for index in dataframe.index:
+            dataframe_resulted.at[index, 'actual'] = tel_charges_test.get_total\
+                (dataframe.at[index, 'minutes'], dataframe.at[index, 'times'])
+            if (dataframe_resulted.at[index, 'expect'] == dataframe_resulted.at[index, 'actual']):
+                dataframe_resulted.at[index, 'isSame'] = True
+            else:
+                dataframe_resulted.at[index, 'isSame'] = False
+            dataframe_resulted.at[index, 'testTime'] = datetime.datetime.now()
+            dataframe_resulted.at[index, 'tester'] = 'drt'
+        dataframe_resulted_false = dataframe_resulted[dataframe_resulted['isSame'] == False]
+        st.subheader('Result')
+        st.write(dataframe_resulted)
+        dataframe_resulted.to_csv('test/7_debug.csv', index=False)
         st.subheader('Bug_result')
         st.write(dataframe_resulted_false)
         sizes = [get_percent.get_per(dataframe_resulted), 1 - get_percent.get_per(dataframe_resulted)]
