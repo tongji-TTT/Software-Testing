@@ -33,7 +33,9 @@ if option == 'triangle_test':
         # st.write(dataframe)
         st.subheader('Result')
         st.write(dataframe_resulted)
-        dataframe_resulted.to_csv('test/1_debug.csv',index= False)
+        str = uploaded_file.name
+        str = str[:str.index('.')]
+        dataframe_resulted.to_csv('test/'+str+'_debug.csv',index= False)
         st.subheader('Bug_result')
         st.write(dataframe_resulted_false)
         # st.write(get_percent.get_per(dataframe_resulted))
@@ -67,7 +69,9 @@ elif option == 'calender_test':
         dataframe_resulted_false = dataframe_resulted[dataframe_resulted['isSame'] == False]
         st.subheader('Result')
         st.write(dataframe_resulted)
-        dataframe_resulted.to_csv('test/2_debug.csv', index=False)
+        str = uploaded_file.name
+        str = str[:str.index('.')]
+        dataframe_resulted.to_csv('test/' + str + '_debug.csv', index=False)
         st.subheader('Bug_result')
         st.write(dataframe_resulted_false)
         sizes = [get_percent.get_per(dataframe_resulted), 1 - get_percent.get_per(dataframe_resulted)]
@@ -100,7 +104,9 @@ elif option == 'computer_salesperson_test':
         dataframe_resulted_false = dataframe_resulted[dataframe_resulted['isSame'] == False]
         st.subheader('Result')
         st.write(dataframe_resulted)
-        dataframe_resulted.to_csv('test/4_debug.csv', index=False)
+        str = uploaded_file.name
+        str = str[:str.index('.')]
+        dataframe_resulted.to_csv('test/' + str + '_debug.csv', index=False)
         st.subheader('Bug_result')
         st.write(dataframe_resulted_false)
         sizes = [get_percent.get_per(dataframe_resulted), 1 - get_percent.get_per(dataframe_resulted)]
@@ -133,7 +139,9 @@ elif option == 'tel_charges_test':
         dataframe_resulted_false = dataframe_resulted[dataframe_resulted['isSame'] == False]
         st.subheader('Result')
         st.write(dataframe_resulted)
-        dataframe_resulted.to_csv('test/7_debug.csv', index=False)
+        str = uploaded_file.name
+        str = str[:str.index('.')]
+        dataframe_resulted.to_csv('test/' + str + '_debug.csv', index=False)
         st.subheader('Bug_result')
         st.write(dataframe_resulted_false)
         sizes = [get_percent.get_per(dataframe_resulted), 1 - get_percent.get_per(dataframe_resulted)]
